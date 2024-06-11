@@ -1,14 +1,66 @@
 import React, { useState } from 'react';
 import { Button, Flex } from 'antd'
 import { Col, Divider, Row } from 'antd';
-import { CaretLeftFilled, CaretUpFilled, CaretDownFilled, CaretRightFilled } from '@ant-design/icons'
-import Image from 'next/image';
 
 interface LanguageSwitcherProps {
     layoutText: string;
     movePosition: string;
     moveShape: string;
 }
+
+const shapeStyles: { [key: string]: React.CSSProperties } = {
+
+    square: {
+        width: '100px',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'grey',
+    },
+    oval: {
+        width: '150px',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'grey',
+        borderRadius: '50%',
+    },
+    circle: {
+        width: '100px',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'grey',
+        borderRadius: '50%',
+    },
+    trapezoid: {
+        borderBottom: '100px solid grey',
+        borderLeft: '50px solid transparent',
+        borderRight: '50px solid transparent',
+        height: '0',
+        width: '200px',
+    },
+    tool: {
+        width: '100px',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'grey',
+    },
+    parallelogram: {
+        width: '100px',
+        height: '100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'grey',
+        transform: 'skew(20deg)',
+    },
+};
 
 
 const LayoutBox: React.FC<LanguageSwitcherProps> = ({ layoutText, movePosition, moveShape }) => {
@@ -22,12 +74,12 @@ const LayoutBox: React.FC<LanguageSwitcherProps> = ({ layoutText, movePosition, 
     };
 
     const shapes = [
-        { src: "/images/stop.png", alt: "square" },
-        { src: "/images/oval.png", alt: "oval" },
-        { src: "/images/circle.png", alt: "circle" },
-        { src: "/images/trapezium.png", alt: "trapezium" },
-        { src: "/images/tool.png", alt: "tool" },
-        { src: "/images/parallelogram.png", alt: "parallelogram" }
+        { styleShape: shapeStyles.square },
+        { styleShape: shapeStyles.oval },
+        { styleShape: shapeStyles.circle },
+        { styleShape: shapeStyles.trapezoid },
+        { styleShape: shapeStyles.tool },
+        { styleShape: shapeStyles.parallelogram }
     ];
 
     const [shapePositions, setShapePositions] = useState(shapes);
@@ -72,14 +124,25 @@ const LayoutBox: React.FC<LanguageSwitcherProps> = ({ layoutText, movePosition, 
 
     return (
         <div>
-            <p style={{fontSize: '24px', fontWeight: 'bold'}}>{layoutText}</p>
+            <p style={{ fontSize: '24px', fontWeight: 'bold' }}>{layoutText}</p>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="center" align="middle">
                 <Col>
-                    <Button
+                    {/* <Button
                         style={{ border: 'none', height: '110px', width: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                         icon={<CaretLeftFilled style={{ fontSize: '100px' }} />}
                         onClick={moveShapesLeft}
-                    />
+                    /> */}
+                    <Button style={{ border: 'none', height: '110px', width: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        onClick={moveShapesLeft}>
+                        <div style={{
+                            width: '0',
+                            height: '0',
+                            borderTop: '40px solid transparent',
+                            borderRight: '75px solid grey',
+                            borderBottom: '40px solid transparent'
+                        }}>
+                        </div>
+                    </Button>
                     <p style={{ textAlign: 'center', translate: '0px -10px' }}><span style={{ backgroundColor: 'lightgreen', color: '#fff', padding: '5px', fontSize: '12px', borderRadius: '20px' }}>{moveShape}</span></p>
                 </Col>
                 <Col>
@@ -87,17 +150,45 @@ const LayoutBox: React.FC<LanguageSwitcherProps> = ({ layoutText, movePosition, 
                         style={{ border: 'none', height: '110px', width: '420px', display: 'flex', alignItems: 'center' }}
                         onClick={moveRow}
                     >
-                        <CaretUpFilled style={{ fontSize: '100px', marginRight: '50px' }} />
-                        <CaretDownFilled style={{ fontSize: '100px', marginLeft: '50px' }} />
+                        {/* <CaretUpFilled style={{ fontSize: '100px', marginRight: '50px' }} />
+                        <CaretDownFilled style={{ fontSize: '100px', marginLeft: '50px' }} /> */}
+                        <div
+                            style={{
+                                width: '0',
+                                height: '0',
+                                borderLeft: '40px solid transparent',
+                                borderRight: '40px solid transparent',
+                                borderBottom: '80px solid grey',
+                                marginRight: '50px'
+                            }}>
+                        </div>
+                        <div
+                            style={{
+                                width: '0',
+                                height: '0',
+                                borderLeft: '40px solid transparent',
+                                borderRight: '40px solid transparent',
+                                borderTop: '80px solid grey',
+                                marginLeft: '50px'
+                            }}>
+                        </div>
                     </Button>
                     <p style={{ textAlign: 'center', translate: '0px -10px' }}><span style={{ backgroundColor: 'lightgreen', color: '#fff', padding: '5px', fontSize: '12px', borderRadius: '20px' }}>{movePosition}</span></p>
                 </Col>
                 <Col>
                     <Button
                         style={{ border: 'none', height: '110px', width: '210px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                        icon={<CaretRightFilled style={{ fontSize: '100px' }} />}
                         onClick={moveShapesRight}
-                    />
+                    >
+                        <div style={{
+                            width: '0',
+                            height: '0',
+                            borderTop: '40px solid transparent',
+                            borderLeft: '75px solid grey',
+                            borderBottom: '40px solid transparent',
+                        }}>
+                        </div>
+                    </Button>
                     <p style={{ textAlign: 'center', translate: '0px -10px' }}><span style={{ backgroundColor: 'lightgreen', color: '#fff', padding: '5px', fontSize: '12px', borderRadius: '20px' }}>{moveShape}</span></p>
                 </Col>
             </Row>
@@ -109,7 +200,7 @@ const LayoutBox: React.FC<LanguageSwitcherProps> = ({ layoutText, movePosition, 
                         {row.map((shape, index) => (
                             <Col key={index}>
                                 <Button style={shapeButtonStyle} onClick={shufflePositions}>
-                                    <Image src={shape.src} alt={shape.alt} width={100} height={100} />
+                                    <div style={shape.styleShape}></div>
                                 </Button>
                             </Col>
                         ))}
@@ -118,7 +209,7 @@ const LayoutBox: React.FC<LanguageSwitcherProps> = ({ layoutText, movePosition, 
                 <Col span={4}></Col>
             </Row>
 
-        </div>
+        </div >
     )
 }
 
