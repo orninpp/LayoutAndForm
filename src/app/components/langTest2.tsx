@@ -85,6 +85,7 @@ const LanguageSwitcherTest2: React.FC = () => {
     const changeLanguage = (language: string) => {
         i18next.changeLanguage(language);
         setText(i18next.t('formPage', { returnObjects: true }));
+        setLng(i18next.t('language', { returnObjects: true }));
     };
 
     const [selectedLanguage, setSelectedLanguage] = useState<string>('English');
