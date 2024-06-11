@@ -1,7 +1,47 @@
 {
+  "language": {
+    "en": "EN",
+    "th": "TH"
+  },
+  "firstPage":{
+    "title1": "Test 1",
+    "title2": "Test 2"
+  },
   "layoutPage": {
     "layout": "Layout & Style",
     "moveshape": "Move shape",
     "moveposition": "Move position"
+  },
+  "formPage": {
+    "formHeader": "Form & Table",
+    "title": "Title",
+    "Mr": "Mr.",
+    "Mrs": "Mrs.",
+    "Ms": "Ms.",
+    "name": "Name",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "birthday": "Birthday",
+    "nationality": "Nationality",
+    "thai": "Thai",
+    "french": "French",
+    "american": "American",
+    "citizenID": "CitizenID",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "unisex": "Unisex",
+    "phone": "Mobile phone",
+    "passport": "Passport No",
+    "salary": "Expected Salary",
+    "reset": "RESET",
+    "submit": "SUBMIT",
+    "manage": "Manage",
+    "home": "Home",
+    "selectAll": "Select All",
+    "edit": "EDIT",
+    "deleted": "DELETE",
+    "prev": "PREV",
+    "next": "NEXT"
   }
 }

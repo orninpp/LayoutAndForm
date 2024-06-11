@@ -3,20 +3,25 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import i18next from '../i18n';
 import LayoutBox from './layoutBox';
 
-const LanguageSwitcher: React.FC = () => {
-  const [helloText, setHelloText] = useState({
+const LanguageSwitcherTest1: React.FC = () => {
+  const [text, setText] = useState({
     layout: '',
     moveshape: '',
-    moveposition: ''
+    moveposition: '',
   });
+  const [lng, setLng] = useState({
+    en: '',
+    th: '',
+  })
 
   useEffect(() => {
-    setHelloText(i18next.t('layoutPage', { returnObjects: true }));
+    setText(i18next.t('layoutPage', { returnObjects: true }));
+    setLng(i18next.t('language', { returnObjects: true }));
   }, []);
 
   const changeLanguage = (language: string) => {
     i18next.changeLanguage(language);
-    setHelloText(i18next.t('layoutPage', { returnObjects: true }));
+    setText(i18next.t('layoutPage', { returnObjects: true }));
   };
 
   const [selectedLanguage, setSelectedLanguage] = useState<string>('English');
@@ -37,14 +42,14 @@ const LanguageSwitcher: React.FC = () => {
     <div>
       <div style={{display: "flex", justifyContent: "end"}}>
         <select name="selectLang" id="selectLang" onChange={handleChange} value={selectedLanguage}>
-          <option value="English">EN</option>
-          <option value="Thai">TH</option>
+          <option value="English">{lng.en}</option>
+          <option value="Thai">{lng.th}</option>
         </select>
       </div>
 
-      <LayoutBox layoutText={helloText.layout} movePosition={helloText.moveposition} moveShape={helloText.moveshape} />
+      <LayoutBox layoutText={text.layout} movePosition={text.moveposition} moveShape={text.moveshape} />
     </div>
   );
 };
 
-export default LanguageSwitcher;
+export default LanguageSwitcherTest1;
