@@ -155,15 +155,15 @@ const FormComponent: React.FC<FormComponentProps> = ({formHeader,
     }
 
     const handleDeleteAll = () => {
-        if(selectedRowKeys){
-            for(let i=0;i< selectedRowKeys.length;i++){
-                const dataToDelete = formData.find(item => item.key === selectedRowKeys[i])
-                if(dataToDelete){
-                    dispatch(deleteFormData(dataToDelete.key))
-                    window.alert('Delete success')
-                    setSelectedRowKeys([])
+        if (selectedRowKeys) {
+            selectedRowKeys.forEach(key => {
+                const dataToDelete = formData.find(item => item.key === key);
+                if (dataToDelete) {
+                    dispatch(deleteFormData(dataToDelete.key));
                 }
-            }
+            });
+            window.alert('Delete success');
+            setSelectedRowKeys([]);
         }
     }
 
@@ -355,7 +355,7 @@ const FormComponent: React.FC<FormComponentProps> = ({formHeader,
                     </Row>
                     <Form.Item label={gender}
                         name="gender"
-                        rules={[{ required: true, message: 'Please input your gender' }]}>
+                        rules={[{ required: true }]}>
                         <Radio.Group>
                             <Radio value="male">{male}</Radio>
                             <Radio value="female">{female}</Radio>
